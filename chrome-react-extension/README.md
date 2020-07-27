@@ -71,4 +71,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 using bootstrap
 
-### npx create-react-app chrome-react-extension
+### `npx create-react-app chrome-react-extension`
