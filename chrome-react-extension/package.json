@@ -10,11 +10,26 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "clean-webpack-plugin": "^0.1.16",
+    "eslint": "^4.18.2",
+    "eslint-plugin-react": "^7.3.0",
+    "html-webpack-plugin": "^3.2.0",
+    "path": "^0.12.7",
+    "prop-types": "^15.5.10",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.4.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "wp": "webpack --config webpack.config.js "
   },
   "eslintConfig": {
     "extends": "react-app"
