@@ -1,8 +1,9 @@
 {
-  "name": "Chrome Extension with React & Webpack",
+  "name": "KickstartYourWork",
   "options_page": "options.html",
   "background": {
-    "page": "background.html"
+    "scripts": ["background.bundle.js"],
+    "persistent": true
   },
   "browser_action": {
     "default_popup": "popup.html",
@@ -14,16 +15,21 @@
   "icons": {
     "128": "icon-128.png"
   },
-  "content_scripts": [{
-    "matches": ["http://*/*", "https://*/*", "<all_urls>"],
-    "js": ["contentScript.bundle.js"],
-    "css": ["content.styles.css"]
-  }],
-  "web_accessible_resources": [
-    "content.styles.css",
-    "icon-128.png",
-    "icon-34.png"
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*", "<all_urls>"],
+      "js": ["contentScript.bundle.js"],
+      "css": ["content.styles.css"]
+    }
   ],
+  "permissions": [
+    "history",
+    "storage",
+    "activeTab",
+    "clipboardRead",
+    "contextMenus"
+  ],
+  "web_accessible_resources": ["content.styles.css", "icon-128.png"],
   "manifest_version": 2,
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

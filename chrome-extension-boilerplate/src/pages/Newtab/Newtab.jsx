@@ -2,8 +2,12 @@ import React from 'react';
 import logo from '../../assets/img/logo.svg';
 import './Newtab.css';
 import './Newtab.scss';
+import { getFromLocalStorageAsync } from '../../utils/StorageUtils';
+// import Table from 'react-bootstrap/Table';
 
 const Newtab = () => {
+  // let historyData = getFromLocalStorageAsync('historydata');
+
   return (
     <div className="App">
       <header className="App-header">

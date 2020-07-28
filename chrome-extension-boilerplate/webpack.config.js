@@ -47,6 +47,9 @@ var options = {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].bundle.js',
   },
+  optimization: {
+    minimize: false,
+  },
   module: {
     rules: [
       // {
@@ -137,6 +140,11 @@ var options = {
       [
         {
           from: 'src/pages/Content/content.styles.css',
+          to: path.join(__dirname, 'build'),
+          force: true,
+        },
+        {
+          from: 'src/assets/img/icon-34.png',
           to: path.join(__dirname, 'build'),
           force: true,
         },
