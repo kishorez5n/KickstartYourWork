@@ -2,12 +2,20 @@ import React from 'react';
 import logo from '../../assets/img/logo.svg';
 import './Newtab.css';
 import './Newtab.scss';
-import { getFromLocalStorageAsync } from '../../utils/StorageUtils';
+import {
+  getFromLocalStorage,
+  getFromLocalStorageAsync,
+} from '../../utils/StorageUtils';
 // import Table from 'react-bootstrap/Table';
+import HistoryPage from './HistoryPage';
 
 const Newtab = () => {
-  // let historyData = getFromLocalStorageAsync('historydata');
+  /*
+  let historyData = [];
+  historyData = getFromLocalStorageAsync('historydata');
 
+  console.log('Storage get historyData: ' + historyData);
+*/
   return (
     <div className="App">
       <header className="App-header">
@@ -25,6 +33,7 @@ const Newtab = () => {
         </a>
         <h6>The color of this paragraph is defined using SASS.</h6>
       </header>
+      <HistoryPage />
     </div>
   );
 };

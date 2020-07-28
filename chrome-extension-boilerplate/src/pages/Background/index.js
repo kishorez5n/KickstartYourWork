@@ -1,6 +1,8 @@
 import {
   setToLocalStorage,
   setToLocalStorageK,
+  getFromLocalStorage,
+  getFromLocalStorageAsync,
 } from '../../utils/StorageUtils';
 
 var contextMenuItem = {
@@ -101,6 +103,10 @@ var onAllVisitsProcessed = function () {
 
   setToLocalStorageK('historydata', urlToCount);
   setToLocalStorage('historydata', urlData);
+
+  let historyData = getFromLocalStorage('historydata');
+
+  let historyDatal = getFromLocalStorageAsync('historydata');
   // buildPopupDom(divName, urlArray.slice(0, 10));
 };
 
