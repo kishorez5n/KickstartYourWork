@@ -8,6 +8,7 @@ import {
 } from '../../utils/StorageUtils';
 // import Table from 'react-bootstrap/Table';
 import HistoryPage from './HistoryPage';
+import CategoryPage from './CateroryPage';
 
 const Newtab = () => {
   /*
@@ -34,6 +35,7 @@ const Newtab = () => {
         <h6>The color of this paragraph is defined using SASS.</h6>
       </header>
       <HistoryPage />
+      <CategoryPage />
     </div>
   );
 };
