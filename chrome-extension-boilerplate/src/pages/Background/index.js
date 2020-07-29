@@ -101,12 +101,12 @@ var onAllVisitsProcessed = function () {
 
   console.log('urlData: ' + urlData);
 
-  setToLocalStorageK('historydata', urlToCount);
+  // setToLocalStorageK('historydata', urlToCount);
   setToLocalStorage('historydata', urlData);
 
   let historyData = getFromLocalStorage('historydata');
 
-  let historyDatal = getFromLocalStorageAsync('historydata');
+  //let historyDatal = getFromLocalStorageAsync('historydata');
   // buildPopupDom(divName, urlArray.slice(0, 10));
 };
 
