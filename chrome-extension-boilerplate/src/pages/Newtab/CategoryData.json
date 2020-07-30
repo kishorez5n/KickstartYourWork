@@ -1,0 +1,24 @@
+{
+    "Social": [
+        "facebook",
+        "twitter",
+        "reddit",
+        "youtube"
+    ],
+
+    "Travel": [
+        "kayak",
+        "expedia"
+    ],
+
+    "Studies": [
+        "tutorial",
+        "library",
+        "pluralsight"
+    ],
+
+    "Work": [
+        "azure",
+        "visualstudio"
+    ]
+}
