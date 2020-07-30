@@ -164,7 +164,7 @@ function CategoryDisplay({ historydata }) {
           );
         })}
       </div>
-      <table className="table table-sm table-dark">
+      <table className="table table-dark table-sm">
         <thead>
           <tr></tr>
         </thead>
