@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FaThumbtack } from 'react-icons/fa';
+import { FaThumbtack, FaWindowClose } from 'react-icons/fa';
 import { setToLocalStorage } from '../../utils/StorageUtils';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,6 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // fs.readFile("CategoryData.json", function (err, data) {
 //     categoryData = JSON.parse(data);
 // });
+
+const categories = ['Social', 'Studies', 'Work', 'Finance'];
 
 const categoryData = {
   Social: ['facebook', 'twitter', 'reddit', 'youtube', 'gmail', 'inbox'],
@@ -27,6 +29,8 @@ const categoryData = {
     'algorithm',
     'repos',
     'bingatwork',
+    'aria',
+    'jarvis',
   ],
 
   Finance: [
@@ -76,10 +80,18 @@ function CategoryDisplay({ historydata }) {
     setToLocalStorage(pinDataKey, pins);
   }, [pins]);
 
+  // add pin
   function updatePins(elem, pin) {
-    setPins([...pins, pin]);
-    elem.style = 'color: yellow; pointer-events: none;';
-    console.log('update pins' + pins);
+    var pincopy = [...pins];
+    var idx = pincopy.findIndex((_pin) => _pin.url === pin.url);
+    console.log('updatePins idx: ' + idx);
+    if (idx === -1) {
+      setPins([...pins, pin]);
+      elem.style = 'color: yellow; pointer-events: none;';
+      console.log('update pins' + pins);
+    } else {
+      console.log('update pin: Pin already exists' + pin);
+    }
   }
 
   function removePin(pin) {
@@ -104,49 +116,47 @@ function CategoryDisplay({ historydata }) {
 
   return (
     <>
-      <div style={halfPane}>
-        <h1>Work</h1>
-        <table className="table table-dark">
-          <thead>
-            <tr>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            {pins.map((pin) => {
-              return (
-                <tr key={pin.url}>
-                  <td>{pin.title}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      <div className="card-deck">
+        {categories.map((category) => {
+          return (
+            <div className="card text-white bg-secondary mb-3">
+              <div className="card-header bg-dark">{category}</div>
+              <div className="card-body">
+                <div className="list-group list-group-flush">
+                  {pins.map((pin) => {
+                    console.log(
+                      'pin category:' + pin.category + ' category: ' + category
+                    );
+                    if (
+                      determineCategoryUsingCrazyAI(pin.url, pin.title) ===
+                      category
+                    ) {
+                      return (
+                        <li className="list-group-item bg-secondary d-flex justify-content-between align-items-center">
+                          <a
+                            href={pin.url}
+                            className="list-group-item-action text-white bg-secondary"
+                          >
+                            {pin.title}
+                          </a>
+                          <span
+                            className="badge"
+                            onClick={() => removePin(pin)}
+                            style={cursorPointer}
+                          >
+                            {' '}
+                            <FaWindowClose />{' '}
+                          </span>
+                        </li>
+                      );
+                    } else return <> </>;
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div style={halfPane}>
-        <h1>Personal</h1>
-        <table className="table table-dark">
-          <thead>
-            <tr>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            {pins.map((pin) => {
-              return (
-                <tr key={pin.url}>
-                  <td>{pin.title}</td>
-                  <td onClick={() => removePin(pin)} style={cursorPointer}>
-                    {' '}
-                    <FaThumbtack />{' '}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <h1>History</h1>
       <table className="table table-sm table-dark">
         <thead>
           <tr></tr>
