@@ -18,7 +18,14 @@ const categoryData = {
 
   Travel: ['kayak', 'expedia'],
 
-  Studies: ['tutorial', 'library', 'pluralsight'],
+  Studies: [
+    'tutorial',
+    'library',
+    'pluralsight',
+    'mit',
+    'medium.com',
+    'technologyreview',
+  ],
 
   Work: [
     'azure',
