@@ -1,12 +1,74 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaThumbtack } from 'react-icons/fa';
 
 function HistoryList(props) {
+  const [pins, setPins] = useState([]);
+
+  /*
+  useEffect(() => {
+    //getCourses().then((_links) => setPins([_links[0], _links[1]]));
+  }, []);
+*/
+
+  function updatePins(elem, pin) {
+    setPins([...pins, pin]);
+    elem.style = 'color: yellow; pointer-events: none;';
+    // save
+  }
+
+  const cursorPointer = {
+    cursor: 'pointer',
+  };
+
+  const halfPane = {
+    width: '50%',
+    float: 'left',
+  };
+
   return (
-    <div style={{ maxWidth: "100%" }} >
-      <Table striped bordered hover size="sm" variant="dark">
+    <>
+      <div style={halfPane}>
+        <h1>Work</h1>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pins.map((pin) => {
+              return (
+                <tr key={pin.id}>
+                  <td>{pin.title}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div style={halfPane}>
+        <h1>Personal</h1>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pins.map((pin) => {
+              return (
+                <tr key={pin.id}>
+                  <td>{pin.title}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <table striped bordered hover size="sm" variant="dark">
         <thead>
           <tr>
             <th class="col-sm-6">URL</th>
@@ -19,12 +81,19 @@ function HistoryList(props) {
               <tr key={urldata.url}>
                 <td>{urldata.url}</td>
                 <td>{urldata.freq}</td>
+                <td
+                  onClick={(elem) => updatePins(elem.currentTarget, urldata)}
+                  style={cursorPointer}
+                >
+                  {' '}
+                  <FaThumbtack />{' '}
+                </td>
               </tr>
             );
           })}
         </tbody>
-      </Table>
-    </div>
+      </table>
+    </>
   );
 }
 
