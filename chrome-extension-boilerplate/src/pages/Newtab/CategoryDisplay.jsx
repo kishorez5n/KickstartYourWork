@@ -172,7 +172,14 @@ function CategoryDisplay({ historydata }) {
           {historydata.map((urldata) => {
             return (
               <tr key={urldata.url}>
-                <td>{urldata.title}</td>
+                <td>
+                  <a
+                    href={urldata.url}
+                    className="list-group-item-action text-white bg-dark"
+                  >
+                    {urldata.title}
+                  </a>
+                </td>
                 <td>
                   {determineCategoryUsingCrazyAI(urldata.url, urldata.title)}
                 </td>
