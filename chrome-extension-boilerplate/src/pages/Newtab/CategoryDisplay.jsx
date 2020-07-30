@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FaThumbtack } from 'react-icons/fa';
 import { setToLocalStorage } from '../../utils/StorageUtils';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // const fs = require("fs");
 // const categoryData = {};
