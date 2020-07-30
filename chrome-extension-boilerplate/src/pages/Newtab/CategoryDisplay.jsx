@@ -11,27 +11,57 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //     categoryData = JSON.parse(data);
 // });
 
+const categoryData = {
+    "Social": [
+        "facebook",
+        "twitter",
+        "reddit",
+        "youtube"
+    ],
+
+    "Travel": [
+        "kayak",
+        "expedia"
+    ],
+
+    "Studies": [
+        "tutorial",
+        "library",
+        "pluralsight"
+    ],
+
+    "Work": [
+        "azure",
+        "visualstudio",
+        "github",
+        "hack",
+        "code",
+        "algorithm"
+    ],
+
+    "Finance": [
+        "bank",
+        "stocks"
+    ]
+};
+
 function determineCategoryUsingCrazyAI(url, title) {
-  const categoryData = {
-    Social: ['facebook', 'twitter', 'reddit', 'youtube'],
-
-    Travel: ['kayak', 'expedia'],
-
-    Studies: ['tutorial', 'library', 'pluralsight'],
-
-    Work: ['azure', 'visualstudio'],
-  };
-  for (const category in categoryData) {
-    console.log(category);
-    var i = 0;
-    for (i = 0; i < categoryData[category].length; i++) {
-      // console.log(categoryDeterminer);
-      if (url.toLowerCase().includes(categoryData[category][i])) {
-        return category;
-      }
+    for (const category in categoryData) {
+        var i = 0;
+        url = new URL(url)
+        for (i = 0; i < categoryData[category].length; i++) {
+            if (url.hostname.toLowerCase().includes(categoryData[category][i])) {
+                return category;
+            }
+            if (url.href.toLowerCase().includes(categoryData[category][i])) {
+                return category;
+            }
+            if (title.toLowerCase().includes(categoryData[category][i])) {
+                return category;
+            }
+        }
     }
-  }
-  return 'Lol';
+    return 'Unknown';
 }
 
 function CategoryDisplay({ historydata }) {
@@ -151,16 +181,16 @@ function CategoryDisplay({ historydata }) {
 }
 
 CategoryDisplay.propTypes = {
-  historydata: PropTypes.arrayOf(
-    PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      freq: PropTypes.number.isRequired,
-    })
-  ).isRequired,
+    historydata: PropTypes.arrayOf(
+        PropTypes.shape({
+            url: PropTypes.string.isRequired,
+            freq: PropTypes.number.isRequired,
+        })
+    ).isRequired,
 };
 
 CategoryDisplay.defaultProps = {
-  historydata: [],
+    historydata: [],
 };
 
 // CourseList.defaultProps =
