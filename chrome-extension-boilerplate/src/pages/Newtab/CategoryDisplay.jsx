@@ -57,6 +57,17 @@ function CategoryDisplay({ historydata }) {
     console.log('update pins' + pins);
   }
 
+  function removePin(pin) {
+    var pincopy = [...pins];
+    var index = pincopy.findIndex((elem) => elem.url === pin.url);
+    console.log('removePin url: ' + pin.url);
+    console.log('removePin idx: ' + index);
+    if (index !== -1) {
+      pincopy.splice(index, 1);
+      setPins(pincopy);
+    }
+  }
+
   const cursorPointer = {
     cursor: 'pointer',
   };
@@ -79,7 +90,7 @@ function CategoryDisplay({ historydata }) {
           <tbody>
             {pins.map((pin) => {
               return (
-                <tr key={pin.id}>
+                <tr key={pin.url}>
                   <td>{pin.title}</td>
                 </tr>
               );
@@ -98,8 +109,12 @@ function CategoryDisplay({ historydata }) {
           <tbody>
             {pins.map((pin) => {
               return (
-                <tr key={pin.id}>
+                <tr key={pin.url}>
                   <td>{pin.title}</td>
+                  <td onClick={() => removePin(pin)} style={cursorPointer}>
+                    {' '}
+                    <FaThumbtack />{' '}
+                  </td>
                 </tr>
               );
             })}
@@ -114,7 +129,7 @@ function CategoryDisplay({ historydata }) {
         <tbody>
           {historydata.map((urldata) => {
             return (
-              <tr>
+              <tr key={urldata.url}>
                 <td>{urldata.title}</td>
                 <td>
                   {determineCategoryUsingCrazyAI(urldata.url, urldata.title)}
