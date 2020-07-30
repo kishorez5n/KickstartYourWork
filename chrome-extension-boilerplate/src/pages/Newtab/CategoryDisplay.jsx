@@ -12,56 +12,51 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // });
 
 const categoryData = {
-    "Social": [
-        "facebook",
-        "twitter",
-        "reddit",
-        "youtube"
-    ],
+  Social: ['facebook', 'twitter', 'reddit', 'youtube', 'gmail', 'inbox'],
 
-    "Travel": [
-        "kayak",
-        "expedia"
-    ],
+  Travel: ['kayak', 'expedia'],
 
-    "Studies": [
-        "tutorial",
-        "library",
-        "pluralsight"
-    ],
+  Studies: ['tutorial', 'library', 'pluralsight'],
 
-    "Work": [
-        "azure",
-        "visualstudio",
-        "github",
-        "hack",
-        "code",
-        "algorithm"
-    ],
+  Work: [
+    'azure',
+    'visualstudio',
+    'github',
+    'hack',
+    'code',
+    'algorithm',
+    'repos',
+    'bingatwork',
+  ],
 
-    "Finance": [
-        "bank",
-        "stocks"
-    ]
+  Finance: [
+    'bank',
+    'stocks',
+    'chase',
+    'bofa',
+    'robinhood',
+    'loan',
+    'mortagage',
+  ],
 };
 
 function determineCategoryUsingCrazyAI(url, title) {
-    for (const category in categoryData) {
-        var i = 0;
-        url = new URL(url)
-        for (i = 0; i < categoryData[category].length; i++) {
-            if (url.hostname.toLowerCase().includes(categoryData[category][i])) {
-                return category;
-            }
-            if (url.href.toLowerCase().includes(categoryData[category][i])) {
-                return category;
-            }
-            if (title.toLowerCase().includes(categoryData[category][i])) {
-                return category;
-            }
-        }
+  for (const category in categoryData) {
+    var i = 0;
+    url = new URL(url);
+    for (i = 0; i < categoryData[category].length; i++) {
+      if (url.hostname.toLowerCase().includes(categoryData[category][i])) {
+        return category;
+      }
+      if (url.href.toLowerCase().includes(categoryData[category][i])) {
+        return category;
+      }
+      if (title.toLowerCase().includes(categoryData[category][i])) {
+        return category;
+      }
     }
-    return 'Unknown';
+  }
+  return 'Unknown';
 }
 
 function CategoryDisplay({ historydata }) {
@@ -181,16 +176,16 @@ function CategoryDisplay({ historydata }) {
 }
 
 CategoryDisplay.propTypes = {
-    historydata: PropTypes.arrayOf(
-        PropTypes.shape({
-            url: PropTypes.string.isRequired,
-            freq: PropTypes.number.isRequired,
-        })
-    ).isRequired,
+  historydata: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      freq: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 CategoryDisplay.defaultProps = {
-    historydata: [],
+  historydata: [],
 };
 
 // CourseList.defaultProps =
