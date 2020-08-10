@@ -38,6 +38,7 @@ const categoryData = {
     'bingatwork',
     'aria',
     'jarvis',
+    'powerbi',
   ],
 
   Finance: [
